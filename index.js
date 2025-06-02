@@ -13,12 +13,13 @@
 
     // GET /authors - Obtener todos los autores
     app.get('/authors', (req, res) => {
-    const simplifiedAuthors = authors.map(({ id, name, description, image, biography }) => ({
+    const simplifiedAuthors = authors.map(({ id, name, description, image, biography, locked }) => ({
         id,
         name,
         description,
         image,
-        biography
+        biography,
+        locked
     }));
     res.json(simplifiedAuthors);
     });
