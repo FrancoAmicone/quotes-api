@@ -1548,6 +1548,26 @@
             ],
             "image": "https://res.cloudinary.com/dmokmlapx/image/upload/v1723210698/DailyQuotes/Michel-de-Montaigne.webp",
             "locked": true
+        },
+        {
+            "id": 40,
+            "name": "Roland Barthes",
+            "description": "Roland Barthes fue un crítico, teórico literario, semiólogo y filósofo estructuralista francés, quien se interesó y escribió sobre crítica literaria, lingüística, filosofía del lenguaje, los signos, los símbolos y la fotografía.",
+            "image": "https://res.cloudinary.com/dmokmlapx/image/upload/v1748901073/roland-barthes-gris-tormenta_afjmgh.jpg",
+            "biography": "Roland Barthes (Francia, 1915 – 1980) escritor y uno de los semiólogos franceses más relevantes del siglo XX. En la Universidad de París obtuvo las titulaciones de Letras Clásicas, Gramática y Filosofía. En 1934 se le diagnostica una tuberculosis que lo mantiene ingresado en diversos sanatorios durante más de diez años. Fue lector en las universidades de Alejandría y Budapest y posteriormente trabajó como investigador en lexicología y sociología en el Centro Nacional de Investigación Científica de París. Roland Barthes es autor de más de veinte estudios de semiótica estructuralista, análisis crítica de la obra literaria pero también de libros sobre fotografía, música, arte y cine. Entre sus obras destacan: La cámara lúcida. Nota sobre la fotografía, también aparecido en Paidós, editorial que ha publicado igualmente compilaciones de sus escritos como Lo obvio y lo obtuso. Imágenes, gestos, voces, El susurro del lenguaje, La aventura semiológica, La Torre Eiffel. Textos sobre la imagen y Variaciones sobre la lectura. Recientemente Ediciones Paidós ha publicado Del deporte y los hombres, estudio perteneciente a la documentación para un film documental, inédito en lengua castellana (colección El arco de Ulises). Barthes murió en 1980 víctima de un accidente de coche cerca de la Sorbona, en París.\n\nEdiciones Paidós recupera en la Biblioteca Roland Barthes, con una nueva presentación, los textos más importantes del semiólogo francés. Los dos primeros títulos que inauguran la colección son La aventura semiológica y Lo obvio y lo obtuso.",
+            "quotes": [
+                "El lenguaje no es ni reaccionario ni progresista; es simplemente fascista: porque el fascismo no impide decir, obliga a decir",
+                "Escribir es una neutralización, una suspensión de lo vivido.",
+                "El escritor actual no es más que un hombre que se dedica a observar su lenguaje.",
+                "La lengua es una estructura, un sistema de signos, no un reflejo del mundo.",
+                "La escritura comienza donde se interrumpe el habla.",
+                "El placer del texto no puede reducirse a una sola definición.",
+                "El cuerpo del texto es como el cuerpo del amante: desea y es deseado.",
+                "Lo que la fotografía reproduce hasta el infinito ha tenido lugar una sola vez.",
+                "La verdad no tiene nada que ver con el número de personas que la creen.",
+                "El texto que me gusta es aquel que me hace huir de mi propia identidad."
+            ],
+            "locked": true
         }
     ]
 }

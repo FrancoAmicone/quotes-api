@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Autores - Quotes API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            min-height: 100px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .authors-list {
+            margin-top: 30px;
+        }
+        .author-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        .author-card img {
+            max-width: 100px;
+            height: auto;
+            float: right;
+            margin-left: 15px;
+            border-radius: 50%;
+        }
+        .navigation {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+        .navigation a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="navigation">
+        <a href="/quotes.html">Gestionar Citas →</a>
+    </div>
+    
+    <h1>Gestor de Autores</h1>
+    
+    <div id="message"></div>
+    
+    <form id="authorForm">
+        <div class="form-group">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="description">Descripción:</label>
+            <textarea id="description" name="description" required></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="image">URL de imagen:</label>
+            <input type="url" id="image" name="image" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="biography">Biografía:</label>
+            <textarea id="biography" name="biography" required></textarea>
+        </div>
+        
+        <button type="submit">Guardar Autor</button>
+    </form>
+    
+    <div class="authors-list">
+        <h2>Autores Actuales</h2>
+        <div id="authorsList"></div>
+    </div>
+
+    <script>
+        // Cargar la lista de autores al iniciar
+        document.addEventListener('DOMContentLoaded', loadAuthors);
+
+        // Manejar el envío del formulario
+        document.getElementById('authorForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const authorData = {
+                name: document.getElementById('name').value,
+                description: document.getElementById('description').value,
+                image: document.getElementById('image').value,
+                biography: document.getElementById('biography').value,
+                locked: true // Por defecto, los nuevos autores están bloqueados
+            };
+            
+            fetch('/authors', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(authorData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al guardar el autor');
+                }
+                return response.json();
+            })
+            .then(data => {
+                showMessage('Autor guardado correctamente', 'success');
+                document.getElementById('authorForm').reset();
+                loadAuthors(); // Recargar la lista de autores
+            })
+            .catch(error => {
+                showMessage(error.message, 'danger');
+            });
+        });
+
+        // Cargar la lista de autores
+        function loadAuthors() {
+            fetch('/authors')
+            .then(response => response.json())
+            .then(authors => {
+                const authorsListElement = document.getElementById('authorsList');
+                authorsListElement.innerHTML = '';
+                
+                authors.forEach(author => {
+                    const authorElement = document.createElement('div');
+                    authorElement.className = 'author-card';
+                    
+                    authorElement.innerHTML = `
+                        <img src="${author.image}" alt="${author.name}">
+                        <h3>${author.name}</h3>
+                        <p>${author.description}</p>
+                        <p><strong>Estado:</strong> ${author.locked ? 'Bloqueado' : 'Desbloqueado'}</p>
+                    `;
+                    
+                    authorsListElement.appendChild(authorElement);
+                });
+            })
+            .catch(error => {
+                showMessage('Error al cargar autores', 'danger');
+            });
+        }
+
+        // Mostrar mensajes al usuario
+        function showMessage(message, type) {
+            const messageElement = document.getElementById('message');
+            messageElement.innerHTML = `<div class="alert alert-${type}">${message}</div>`;
+            
+            // Eliminar el mensaje después de 3 segundos
+            setTimeout(() => {
+                messageElement.innerHTML = '';
+            }, 3000);
+        }
+    </script>
+</body>
+</html> 
